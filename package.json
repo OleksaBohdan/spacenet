@@ -1,0 +1,14 @@
+{
+  "name": "spacenet",
+  "version": "1.0.0",
+  "description": "registration to metaverse Spacenet",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Bohdan Oleksa",
+  "license": "ISC",
+  "dependencies": {
+    "koa": "^2.13.4"
+  }
+}
