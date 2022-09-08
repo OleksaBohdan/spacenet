@@ -4,11 +4,23 @@
   "description": "registration to metaverse Spacenet",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./src index.js",
+    "dev": "nodemon ./src index.js"
   },
   "author": "Bohdan Oleksa",
   "license": "ISC",
   "dependencies": {
-    "koa": "^2.13.4"
+    "koa": "^2.13.4",
+    "koa-bodyparser": "^4.3.0",
+    "koa-passport": "^5.0.0",
+    "koa-router": "^12.0.0",
+    "koa-static": "^5.0.0",
+    "mongoose": "^6.5.2",
+    "passport-local": "^1.0.0",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.19"
   }
 }
