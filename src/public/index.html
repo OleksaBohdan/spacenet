@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Login</title>
+    <title>Spacenet - Login</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -18,10 +18,27 @@
     <header>
       <div class="logo"><img src="./img/logo.svg" alt="spacenet logo" /></div>
     </header>
+
     <section class="login-block">
-      <h1>We are glad to see you, earthling!</h1>
-      <div class="login-block-info">Sign in</div>
-      <div class="login-block-form-wrapper"></div>
+      <div class="container">
+        <h1>We are glad to see you, earthling!</h1>
+        <div class="login-block-info">Sign in</div>
+        <div class="login-block-form-wrapper"></div>
+        <form action="#" method="">
+          <label for="login">Login</label>
+          <input type="login" id="login" type="text" maxlength="50" />
+          <label for="password">Password</label>
+          <input type="password" id="password" type="text" maxlength="50" />
+          <span></span>
+          <p>Forgot your password?</p>
+          <button class="btn btn-signin">sign in</button>
+          <button class="btn btn-fb">facebook</button>
+          <button class="btn btn-create">create account</button>
+        </form>
+      </div>
     </section>
+    <footer>
+      <div class="copyright">2022 Planet Earth</div>
+    </footer>
   </body>
 </html>
