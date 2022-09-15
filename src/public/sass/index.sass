@@ -42,15 +42,23 @@ header
     input
       padding: 12px 16px
       gap: 12px
-      width: 434px
+      max-width: 434px
       height: 48px
       border: 1px solid #B9B9B9
       border-radius: 10px
-      background: rgb(0, 0,0 ,0)
+      background-color: rgb(0, 0,0 ,0)
       font-family: 'Inter'
       font-weight: 400
       font-size: 14px
       color: #FFFFFF
+      outline: none
+      &:active
+        background-color: rgb(0, 0,0 ,0) 
+      &:focus
+        background-color: rgb(0, 0,0 ,0) 
+      &:hover
+        background-color: rgb(0, 0,0 ,0)
+          
     .btn
       font-family: 'Inter'
       font-weight: 400
@@ -61,6 +69,8 @@ header
       border-radius: 10px
       padding: 12px 0
       margin-top: 32px
+      outline: none
+      cursor: pointer
       &-signin
         background: linear-gradient(90deg, #002255 2.66%, #A724AA 100%)
         border: 2px solid #C6C6C6
@@ -71,6 +81,8 @@ header
       &-create
         background: rgb(0, 0,0 ,0)
         border: 2px solid #b506ef
+      
+         
     p
       font-family: 'Inter'
       font-weight: 400
