@@ -24,10 +24,11 @@
     <section class="require">
       <div class="container">
         <h1>We are glad to see you, earthling!</h1>
-        <div class="require__info">Sign in</div>
+        <div class="require__header">Sign in</div>
+        <div class="require__info hidden"></div>
         <div class="require__wrapper">
           <form class="credential-form" action="#" method="get">
-            <label name="login" for="login">Login</label>
+            <label name="login" for="login">Username</label>
             <input type="text" id="login" maxlength="50" />
             <label name="password" for="password">Password</label>
             <input type="password" id="password" type="text" maxlength="50" />
@@ -36,10 +37,12 @@
             <p><a href="#">Forgot your password?</a></p>
           </form>
 
+          <div class="require__text">or</div>
+
           <form action="#" method="get">
             <button type="submit" class="btn btn_fb">facebook</button>
           </form>
-          <form action="#" method="get">
+          <form action="./pages/register.html" method="get">
             <button type="submit" class="btn btn_create">create account</button>
           </form>
         </div>
