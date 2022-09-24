@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Spacenet - Register</title>
+    <link rel="shortcut icon" href="./img/icons/favicon.ico" type="image/x-icon" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -27,8 +28,8 @@
         <div class="require__header">Register</div>
         <div class="require__info hidden"></div>
         <div class="require__wrapper">
-          <form class="credential-form" action="#" method="get">
-            <label name="login" for="login">Username</label>
+          <form class="credential-form" action="#">
+            <label name="userName" for="login">Username</label>
             <input type="text" id="login" maxlength="50" />
             <label name="email" for="email">Email</label>
             <input type="email" id="email" maxlength="50" />
@@ -40,7 +41,7 @@
 
           <div class="require__text">or</div>
 
-          <form action="#" method="get">
+          <form action="#">
             <button type="submit" class="btn btn_fb">facebook</button>
           </form>
         </div>
@@ -50,5 +51,7 @@
     <footer class="footer">
       <div class="copyright">2022 Planet Earth</div>
     </footer>
+
+    <script src="../js/register.js"></script>
   </body>
 </html>
