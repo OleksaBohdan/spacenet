@@ -4,7 +4,6 @@ const config = require('./config/config');
 const Handlebars = require('handlebars');
 const fs = require('fs');
 const path = require('path');
-const User = require('./models/User');
 const registerRouter = require('./routes/register/registerRouter');
 
 const app = new Koa();
