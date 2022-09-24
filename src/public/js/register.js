@@ -1,18 +1,12 @@
-const div = '<div class="lds-ring"><div></div><div></div><div></div><div></div></div>';
+const spinner = '<div class="lds-ring"><div></div><div></div><div></div><div></div></div>';
 
 document.addEventListener('DOMContentLoaded', () => {
-  console.log('register');
   const submit = document.querySelector('#btn_submit');
   const registerForm = document.querySelector('#registerForm');
   const info = document.querySelector('#require__info');
-  const spinner = document.querySelector('#spinner');
 
   submit.addEventListener('click', async (e) => {
     e.preventDefault();
-    console.log('username:', registerForm.userName.value);
-    console.log('email:', registerForm.email.value);
-    console.log('password:', registerForm.password.value);
-
     if (registerForm.userName.value == '' || registerForm.email.value == '' || registerForm.password.value == '') {
       console.log('some form empty');
       info.classList.remove('success');
@@ -20,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-    info.innerHTML = div;
+    info.innerHTML = spinner;
 
     const user = {
       userName: registerForm.userName.value,
@@ -35,11 +29,21 @@ document.addEventListener('DOMContentLoaded', () => {
       },
       body: JSON.stringify(user),
     }).then((res) => {
-      setTimeout(() => {
-        console.log(res.status);
+      if (res.status == 201) {
+        info.classList.remove('warning');
         info.classList.add('success');
         info.innerHTML = 'Account succesfully created!';
-      }, 2000);
+      }
+      if (res.status == 409) {
+        res.json().then((res) => {
+          const obj = res;
+          console.log(obj[Object.keys(obj)[0]]);
+          let user = obj[Object.keys(obj)[0]];
+          info.classList.add('warning');
+          const errorMessage = `User: ${user} already registered`;
+          info.innerHTML = errorMessage;
+        });
+      }
     });
   });
 });
