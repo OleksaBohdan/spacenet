@@ -37,11 +37,19 @@
         <div class="require__wrapper">
           <form id="registerForm" class="credential-form" action="#">
             <label for="login">Username</label>
-            <input name="userName" type="text" id="login" maxlength="50" required />
+            <input name="userName" type="text" id="login" maxlength="50" required placeholder="> 3 symbols" />
             <label for="email">Email</label>
             <input name="email" type="email" id="email" maxlength="50" required />
             <label for="password">Password</label>
-            <input name="password" type="password" id="password" type="text" maxlength="50" required />
+            <input
+              name="password"
+              type="password"
+              id="password"
+              type="text"
+              maxlength="50"
+              required
+              placeholder="> 4 symbols"
+            />
             <span></span>
             <button id="btn_submit" type="submit" class="btn btn_submit">create account</button>
           </form>

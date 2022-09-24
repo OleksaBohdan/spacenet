@@ -11,16 +11,15 @@ module.exports = async function register(ctx, next) {
   try {
     await User.create(user);
   } catch (e) {
-    console.log('Ошибка', e.keyValue);
     if (e.code == 11000) {
       ctx.status = 409;
       ctx.body = JSON.stringify(e.keyValue);
-      console.log('Пользователь уже существует');
       return;
     }
-  }
 
-  console.log(user);
+    ctx.status = 520;
+    return;
+  }
 
   ctx.status = 201;
 };

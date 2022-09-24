@@ -1,4 +1,8 @@
+// Yes, I know, this code is very very simple:) because i tested backend
+
 const spinner = '<div class="lds-ring"><div></div><div></div><div></div><div></div></div>';
+const EMAIL_REGEXP =
+  /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/iu;
 
 document.addEventListener('DOMContentLoaded', () => {
   const submit = document.querySelector('#btn_submit');
@@ -7,10 +11,32 @@ document.addEventListener('DOMContentLoaded', () => {
 
   submit.addEventListener('click', async (e) => {
     e.preventDefault();
-    if (registerForm.userName.value == '' || registerForm.email.value == '' || registerForm.password.value == '') {
-      console.log('some form empty');
+
+    function removeClasses() {
       info.classList.remove('success');
+      info.classList.remove('warning');
+    }
+    if (registerForm.userName.value == '' || registerForm.email.value == '' || registerForm.password.value == '') {
+      removeClasses();
       info.innerHTML = 'ERROR: Some fields are empty!';
+      return;
+    }
+
+    if (registerForm.userName.value.length < 3) {
+      removeClasses();
+      info.innerHTML = `ERROR: Username to short`;
+      return;
+    }
+
+    if (!EMAIL_REGEXP.test(registerForm.email.value)) {
+      removeClasses();
+      info.innerHTML = `ERROR: wrong email: ${registerForm.email.value}`;
+      return;
+    }
+
+    if (registerForm.password.value.length < 3) {
+      removeClasses();
+      info.innerHTML = `ERROR: Password must have more than 4 symbols`;
       return;
     }
 
@@ -31,18 +57,29 @@ document.addEventListener('DOMContentLoaded', () => {
     }).then((res) => {
       if (res.status == 201) {
         info.classList.remove('warning');
+        info.classList.remove('error');
         info.classList.add('success');
         info.innerHTML = 'Account succesfully created!';
+        return;
       }
+
       if (res.status == 409) {
         res.json().then((res) => {
-          const obj = res;
-          console.log(obj[Object.keys(obj)[0]]);
-          let user = obj[Object.keys(obj)[0]];
+          let user = res[Object.keys(res)[0]];
+          info.classList.remove('error');
+          info.classList.remove('success');
           info.classList.add('warning');
-          const errorMessage = `User: ${user} already registered`;
-          info.innerHTML = errorMessage;
+          info.innerHTML = `User: ${user} already registered`;
+          return;
         });
+      }
+
+      if (res.status == 520) {
+        info.classList.remove('success');
+        info.classList.remove('warning');
+        info.classList.add('error');
+        info.innerHTML = `ERROR: Unknown error ${res.status}`;
+        return;
       }
     });
   });
