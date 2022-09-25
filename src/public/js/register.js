@@ -60,6 +60,9 @@ document.addEventListener('DOMContentLoaded', () => {
         info.classList.remove('error');
         info.classList.add('success');
         info.innerHTML = 'Account succesfully created!';
+        registerForm.userName.value = '';
+        registerForm.email.value = '';
+        registerForm.password.value = '';
         return;
       }
 

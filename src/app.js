@@ -1,7 +1,6 @@
 const Koa = require('koa');
 const Router = require('koa-router');
 const config = require('./config/config');
-const Handlebars = require('handlebars');
 const fs = require('fs');
 const path = require('path');
 const registerRouter = require('./routes/register/registerRouter');
