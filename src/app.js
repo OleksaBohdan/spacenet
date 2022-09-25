@@ -1,6 +1,7 @@
 const Koa = require('koa');
 const Router = require('koa-router');
 const views = require('koa-views');
+const hbs = require('handlebars');
 const favicon = require('koa-favicon');
 const config = require('./config/config');
 const fs = require('fs');
@@ -29,23 +30,31 @@ app.use(async (ctx, next) => {
   }
 });
 
-const render = views(path.join(__dirname, './views/public'));
+const render = views(path.join(__dirname, './views/public'), { extension: 'hbs', map: { hbs: 'handlebars' } });
 app.use(render);
 
+router.get('/test', async (ctx, next) => {
+  await ctx.render('./pages/test');
+});
+
+router.get('/', async (ctx, next) => {
+  await ctx.render('./pages/main');
+});
+
 router.get('/login', async (ctx, next) => {
-  await ctx.render('./index.html');
+  await ctx.render('./login');
 });
 
 router.get('/register', async (ctx, next) => {
-  await ctx.render('./pages/register.html');
+  await ctx.render('./pages/register');
 });
 
 router.get('/main', async (ctx, next) => {
-  await ctx.render('./pages/main.html');
+  await ctx.render('./pages/main');
 });
 
 router.get('/profile', async (ctx, next) => {
-  await ctx.render('./pages/profile.html');
+  await ctx.render('./pages/profile');
 });
 
 app.use(registerRouter.routes());
