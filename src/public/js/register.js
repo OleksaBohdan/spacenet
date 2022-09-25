@@ -1,5 +1,7 @@
 // Yes, I know, this code is very very simple:) because i tested backend
 
+const { redirect } = require('../../routes/register/registerRouter');
+
 const spinner = '<div class="lds-ring"><div></div><div></div><div></div><div></div></div>';
 const EMAIL_REGEXP =
   /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/iu;
@@ -63,6 +65,16 @@ document.addEventListener('DOMContentLoaded', () => {
         registerForm.userName.value = '';
         registerForm.email.value = '';
         registerForm.password.value = '';
+        console.log('/login redirect');
+
+        async function login() {
+          console.log('/login redirect');
+          await fetch('/login', {
+            method: fetch,
+          });
+        }
+
+        login();
         return;
       }
 

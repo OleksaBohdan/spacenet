@@ -63,6 +63,9 @@ document.addEventListener('DOMContentLoaded', () => {
         registerForm.userName.value = '';
         registerForm.email.value = '';
         registerForm.password.value = '';
+        setTimeout(() => {
+          window.location.replace('/login');
+        }, 2500);
         return;
       }
 

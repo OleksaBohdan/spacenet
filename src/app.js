@@ -33,12 +33,8 @@ app.use(async (ctx, next) => {
 const render = views(path.join(__dirname, './views/public'), { extension: 'hbs', map: { hbs: 'handlebars' } });
 app.use(render);
 
-router.get('/test', async (ctx, next) => {
-  await ctx.render('./pages/test');
-});
-
 router.get('/', async (ctx, next) => {
-  await ctx.render('./pages/main');
+  ctx.redirect('/main');
 });
 
 router.get('/login', async (ctx, next) => {
