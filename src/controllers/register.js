@@ -23,4 +23,5 @@ module.exports = async function register(ctx, next) {
   }
 
   ctx.status = 201;
+  next();
 };

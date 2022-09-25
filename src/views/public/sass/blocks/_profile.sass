@@ -1,0 +1,105 @@
+.main-profile
+  @include full-page
+  background: url(../img/bg_profile.png) center (center / cover) no-repeat
+  display: flex
+  flex-direction: column
+  align-items: center
+  padding-bottom: 90px
+  position: relative
+  &__cover
+    position: absolute
+    background:  linear-gradient(356.17deg, rgba(0, 34, 85, 0.8) 2.43%, rgba(0, 34, 85, 0.352) 96.16%)
+    max-width: 1340px
+    min-height: 200px
+    img
+      opacity: .3
+      min-width: 100%
+  &__photo
+    z-index: 1
+    margin-top: 70px
+    top: 200px
+    width: 200px
+    height: 200px  
+    img
+      top: -130px
+      width: 100% 
+      border-radius: 100% 
+  &__name
+    margin-top: 20px
+    font-family: 'Montserrat'
+    font-weight: 600
+    font-size: 16px
+    text-align: right
+    color: #FFFFFF
+  &__scores
+    margin-top: 24px
+    display: flex
+    justify-content: space-between
+    &-score
+      display: flex
+      flex-direction: column
+      margin-right: 20px
+      margin-left: 20px
+      font-family: 'Inter'
+      font-weight: 500
+      font-size: 20px
+      text-align: center
+      cursor: pointer
+      &:nth-child(1)
+        color: #0BFF4F
+      &:nth-child(2)
+        color: #FCF200
+      &:nth-child(3)
+        color: #EE0F0F
+      img
+        margin-bottom: 6px 
+  &__wrapper
+    margin-top: 24px
+    width: 886px  
+    &-inner
+      display: flex 
+      justify-content: space-between   
+  &__smallblock
+    width: 433px
+    height: 48px
+    background: linear-gradient(90deg, rgba(46, 102, 186, 0.3) 2.66%, rgba(200, 0, 204, 0.3) 100%)
+    border: 2px solid #FFFFFF
+    border-radius: 15px
+    padding-right: 24px
+    padding-left: 24px
+    font-family: 'Inter'
+    font-weight: 500
+    font-size: 20px
+    line-height: 24px
+    text-align: right
+    color: #FFFFFF
+    display: flex
+    justify-content: space-between
+    align-items: center
+  &__descr
+    margin-top: 25px
+    background: linear-gradient(90deg, rgba(46, 102, 186, 0.3) 2.66%, rgba(200, 0, 204, 0.3) 100%)
+    border: 2px solid #FFFFFF
+    border-radius: 15px
+    height: 131px
+    padding-right: 24px
+    padding-left: 24px
+    color: #FFFFFF
+    font-family: 'Inter'
+    font-weight: 500
+    font-size: 20px
+    line-height: 24px
+  &__label
+    font-family: 'Montserrat'
+    font-weight: 600
+    font-size: 20px
+    line-height: 46px
+    text-transform: uppercase
+    color: #B9B9B9
+          
+         
+
+
+
+    
+    
