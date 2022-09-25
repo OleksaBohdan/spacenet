@@ -7,6 +7,7 @@ const config = require('./config/config');
 const fs = require('fs');
 const path = require('path');
 const registerRouter = require('./routes/register/registerRouter');
+const loginRouter = require('./routes/login/loginRouter');
 
 const app = new Koa();
 const router = new Router();
@@ -54,6 +55,7 @@ router.get('/profile', async (ctx, next) => {
 });
 
 app.use(registerRouter.routes());
+app.use(loginRouter.routes());
 app.use(router.routes());
 
 module.exports = app;

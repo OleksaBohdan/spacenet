@@ -3,7 +3,7 @@ const register = require('../../controllers/register');
 
 const registerRouter = new Router({ prefix: '/api/register' });
 
-registerRouter.post('/', register, (ctx, next) => {});
+registerRouter.post('/', register);
 
 registerRouter.get('/facebook', () => {
   console.log('facebook register');

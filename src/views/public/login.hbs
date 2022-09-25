@@ -24,13 +24,13 @@
       <div class='container'>
         <h1>We are glad to see you, earthling!</h1>
         <div class='require__header'>Sign in</div>
-        <div class='require__info hidden'></div>
+        <div class='require__info'></div>
         <div class='require__wrapper'>
           <form class='credential-form' action='#'>
-            <label name='login' for='login'>Username</label>
-            <input type='text' id='login' maxlength='50' />
-            <label name='password' for='password'>Password</label>
-            <input type='password' id='password' type='text' maxlength='50' />
+            <label for='login'>Username</label>
+            <input name='username' type='text' id='login' maxlength='50' />
+            <label for='password'>Password</label>
+            <input name='password' type='password' id='password' type='text' maxlength='50' />
             <span></span>
             <button type='submit' class='btn btn_submit'>sign in</button>
             <p><a href='#'>Forgot your password?</a></p>
@@ -51,5 +51,7 @@
     <footer class='footer'>
       <div class='copyright'>2022 Planet Earth</div>
     </footer>
+
+    <script src='./js/login.js'></script>
   </body>
 </html>
