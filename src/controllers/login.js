@@ -26,6 +26,8 @@ module.exports = async function (ctx, next) {
 
   if (await user.checkPassword(password)) {
     const token = uuid.v4();
+    await Session.create({ token: token, lastVisit: new Date(), user: user });
+    ctx.cookies.set('token', token);
     ctx.status = 200;
     ctx.user = user;
     ctx.body = token;

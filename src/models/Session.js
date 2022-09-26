@@ -15,4 +15,6 @@ const sessionSchema = new mongoose.Schema(
   }
 );
 
+sessionSchema.path('lastVisit').index({ expires: 86400000 });
+
 module.exports = mongoose.model('Session', sessionSchema);
