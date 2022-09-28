@@ -5,7 +5,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   submit.addEventListener('click', async (e) => {
     e.preventDefault();
-    console.log('click');
 
     const userName = loginForm.username.value;
     const password = loginForm.password.value;
