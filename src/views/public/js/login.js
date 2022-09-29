@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }).then((res) => {
       res.json().then((result) => {
         console.log(result);
-        if (res.status == 500 || res.status == 404 || res.status == 412) {
+        if (res.status == 500 || res.status == 404 || res.status == 412 || res.status == 400) {
           info.innerHTML = result.message;
         }
       });

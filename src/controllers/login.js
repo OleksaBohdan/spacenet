@@ -1,40 +1,18 @@
-const User = require('../models/User');
-const Session = require('../models/Session');
-const uuid = require('uuid');
+const passport = require('../libs/passport');
 
 module.exports = async function (ctx, next) {
-  const userName = ctx.request.body.userName;
-  const password = ctx.request.body.password;
-  let user;
+  passport.authenticate('local', async (error, user, info) => {
+    if (error) throw error;
 
-  console.log(userName, password);
+    if (!user) {
+      ctx.status = 400;
+      ctx.body = { error: info };
+      return;
+    }
 
-  try {
-    user = await User.findOne({ userName });
-    ctx.body = user;
-  } catch (e) {
-    ctx.status = 500;
-    ctx.body = { message: 'server error' };
-    return;
-  }
-
-  if (!user) {
-    ctx.status = 404;
-    ctx.body = { message: 'user not found' };
-    return;
-  }
-
-  if (await user.checkPassword(password)) {
-    const token = uuid.v4();
-    await Session.create({ token: token, lastVisit: new Date(), user: user });
+    const token = await ctx.login(user);
     ctx.cookies.set('token', token);
-    ctx.status = 200;
-    ctx.user = user;
-    ctx.body = token;
-    return;
-  } else {
-    ctx.status = 412;
-    ctx.body = { message: 'wrong password' };
-    return;
-  }
+
+    return next();
+  });
 };

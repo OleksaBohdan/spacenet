@@ -4,7 +4,6 @@ const User = require('../../models/User');
 module.exports = new LocalStrategy(
   {
     usernameField: 'userName',
-    session: false,
   },
   async function (username, password, done) {
     try {
@@ -17,8 +16,8 @@ module.exports = new LocalStrategy(
         return done(null, false, 'invalid password');
       }
       return done(null, user);
-    } catch (e) {
-      done(e);
+    } catch (error) {
+      done(error);
     }
   }
 );

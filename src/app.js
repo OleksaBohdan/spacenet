@@ -5,12 +5,13 @@ const hbs = require('handlebars');
 const favicon = require('koa-favicon');
 const config = require('./config/config');
 const fs = require('fs');
+const uuid = require('uuid');
 const path = require('path');
 const Session = require('./models/Session');
 const User = require('./models/User');
 const registerRouter = require('./routes/register/registerRouter');
 const loginRouter = require('./routes/login/loginRouter');
-const passport = require('./libs/passport');
+const mustBeAuthenticated = require('./controllers/mustBeAuthenticated');
 
 const app = new Koa();
 const router = new Router();
@@ -34,6 +35,44 @@ app.use(async (ctx, next) => {
   }
 });
 
+app.use(async (ctx, next) => {
+  ctx.login = async function (user) {
+    const token = uuid.v4();
+
+    try {
+      const session = await Session.findOne(user);
+      if (!session) {
+        await Session.create({ token: token, lastVisit: new Date(), user: user });
+      } else {
+        await session.updateOne({ lastVisit: new Date(), token: token });
+        await session.save();
+      }
+    } catch (error) {
+      throw error;
+    }
+
+    return token;
+  };
+  return next();
+});
+
+app.use(async (ctx, next) => {
+  const token = ctx.cookies.get(token);
+
+  if (!token) return next();
+  const session = await Session.findOne({ token: token }).populate('user');
+
+  if (!session) {
+    ctx.status = 400;
+    ctx.body = { message: 'wrong session token' };
+    return next();
+  }
+
+  await session.updateOne({ lastVisit: new Date() });
+  ctx.user = session.user;
+  return next();
+});
+
 const render = views(path.join(__dirname, './views/public'), { extension: 'hbs', map: { hbs: 'handlebars' } });
 app.use(render);
 
@@ -49,11 +88,11 @@ router.get('/register', async (ctx, next) => {
   await ctx.render('./pages/register');
 });
 
-router.get('/main', async (ctx, next) => {
+router.get('/main', mustBeAuthenticated, async (ctx, next) => {
   await ctx.render('./pages/main');
 });
 
-router.get('/profile', async (ctx, next) => {
+router.get('/profile', mustBeAuthenticated, async (ctx, next) => {
   await ctx.render('./pages/profile');
 });
 
