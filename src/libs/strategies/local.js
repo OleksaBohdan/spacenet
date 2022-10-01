@@ -9,11 +9,11 @@ module.exports = new LocalStrategy(
     try {
       const user = await User.findOne({ userName: username });
       if (!user) {
-        return done(null, false, 'user not found');
+        return done(null, false, 'User not found');
       }
       const isValidPassword = await user.checkPassword(password);
       if (!isValidPassword) {
-        return done(null, false, 'invalid password');
+        return done(null, false, { message: 'Invalid password' });
       }
       return done(null, user);
     } catch (error) {

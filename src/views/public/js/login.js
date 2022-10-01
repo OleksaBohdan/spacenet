@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (res.status == 200) {
         info.classList.add('success');
-        info.innerHTML = `login succesfull`;
+        info.innerHTML = `Login succesfull`;
         window.location.replace('/main');
       }
 

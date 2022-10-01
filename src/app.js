@@ -59,20 +59,15 @@ app.use(async (ctx, next) => {
 app.use(async (ctx, next) => {
   const token = ctx.cookies.get('token');
 
-  console.log(token);
-  console.log('here 1');
-
   if (!token) return next();
   const session = await Session.findOne({ token: token }).populate('user');
 
   if (!session) {
-    console.log('here 2');
     ctx.status = 400;
-    ctx.body = { message: 'wrong session token' };
+    ctx.body = { message: 'Wrong session token' };
     return next();
   }
 
-  console.log('here 2');
   await session.updateOne({ lastVisit: new Date() });
   ctx.user = session.user;
   return next();
