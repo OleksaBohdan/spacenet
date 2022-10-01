@@ -11,7 +11,7 @@ module.exports = new LocalStrategy(
       if (!user) {
         return done(null, false, 'user not found');
       }
-      const isValidPassword = user.checkPassword(password);
+      const isValidPassword = await user.checkPassword(password);
       if (!isValidPassword) {
         return done(null, false, 'invalid password');
       }
