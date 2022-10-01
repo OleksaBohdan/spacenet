@@ -31,10 +31,10 @@ document.addEventListener('DOMContentLoaded', () => {
       if (res.status == 200) {
         info.classList.add('success');
         info.innerHTML = `login succesfull`;
-        // window.location.replace('/main');
+        window.location.replace('/main');
       }
 
-      console.log(res.status);
+      console.log('res stat', res.status);
     });
   });
 });

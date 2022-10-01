@@ -1,8 +1,9 @@
 const passport = require('../libs/passport');
 
 module.exports = async function (ctx, next) {
-  passport.authenticate('local', async (error, user, info) => {
-    if (error) throw error;
+  console.log('login');
+  await passport.authenticate('local', async (error, user, info) => {
+    if (error) throw error.messaage;
 
     if (!user) {
       ctx.status = 400;
@@ -10,9 +11,14 @@ module.exports = async function (ctx, next) {
       return;
     }
 
+    console.log(user);
+
     const token = await ctx.login(user);
+    console.log('token to set', token);
+    ctx.status = 200;
     ctx.cookies.set('token', token);
+    ctx.body = { message: 'ok' };
 
     return next();
-  });
+  })(ctx, next);
 };
