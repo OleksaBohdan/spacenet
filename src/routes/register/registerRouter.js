@@ -5,9 +5,4 @@ const registerRouter = new Router({ prefix: '/api/register' });
 
 registerRouter.post('/', register);
 
-registerRouter.get('/facebook', () => {
-  console.log('facebook register');
-  ctx.status = 200;
-});
-
 module.exports = registerRouter;
