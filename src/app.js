@@ -103,6 +103,11 @@ router.get('/profile', mustBeAuthenticated, async (ctx, next) => {
 router.get('/oauth/facebook', facebook);
 router.get('/oauth/facebook/callback', facebookCallback);
 
+router.get('/logout', async (ctx, next) => {
+  await Session.findOneAndDelete(ctx.cookies.get('token'));
+  ctx.redirect('/login');
+});
+
 app.use(registerRouter.routes());
 app.use(loginRouter.routes());
 app.use(router.routes());

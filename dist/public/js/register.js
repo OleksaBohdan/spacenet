@@ -1,6 +1,6 @@
 // Yes, I know, this code is very very simple:) because i tested backend
 
-const { redirect } = require('../../routes/register/registerRouter');
+const { redirect } = require('../../../src/routes/register/registerRouter');
 
 const spinner = '<div class="lds-ring"><div></div><div></div><div></div><div></div></div>';
 const EMAIL_REGEXP =
