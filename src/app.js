@@ -14,6 +14,7 @@ const User = require('./models/User');
 const registerRouter = require('./routes/register/registerRouter');
 const loginRouter = require('./routes/login/loginRouter');
 const mustBeAuthenticated = require('./controllers/mustBeAuthenticated');
+const { facebook, facebookCallback } = require('./controllers/loginFacebook');
 
 const app = new Koa();
 app.use(cors());
@@ -99,19 +100,8 @@ router.get('/profile', mustBeAuthenticated, async (ctx, next) => {
   await ctx.render('./pages/profile');
 });
 
-router.get('/oauth/facebook', async (ctx, next) => {
-  await passport.authenticate('facebook')(ctx, next);
-
-  console.log(ctx.response);
-
-  console.log('facebook 2');
-  next();
-});
-
-router.get('/auth/facebook/callback', async (ctx, next) => {
-  passport.authenticate('facebook', { failureRedirect: '/login' });
-  ctx.redirect('/');
-});
+router.get('/oauth/facebook', facebook);
+router.get('/oauth/facebook/callback', facebookCallback);
 
 app.use(registerRouter.routes());
 app.use(loginRouter.routes());

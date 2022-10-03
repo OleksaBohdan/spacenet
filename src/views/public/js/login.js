@@ -4,10 +4,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const loginForm = document.querySelector('.credential-form');
   const info = document.querySelector('.require__info');
 
-  // submitFb.addEventListener('click', async (e) => {
-  //   console.log('click in facebook');
-  //   console.log('click out facebook');
-  // });
+  submitFb.addEventListener('click', async (e) => {
+    await fetch('/oauth/facebook').then((response) => {
+      response.json().then((res) => {
+        window.location.href = res.location;
+      });
+    });
+  });
 
   submit.addEventListener('click', async (e) => {
     e.preventDefault();
