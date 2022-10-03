@@ -1,10 +1,12 @@
 const Koa = require('koa');
 const Router = require('koa-router');
+const cors = require('@koa/cors');
 const views = require('koa-views');
 const hbs = require('handlebars');
 const favicon = require('koa-favicon');
 const config = require('./config/config');
 const fs = require('fs');
+const passport = require('./libs/passport');
 const uuid = require('uuid');
 const path = require('path');
 const Session = require('./models/Session');
@@ -14,6 +16,7 @@ const loginRouter = require('./routes/login/loginRouter');
 const mustBeAuthenticated = require('./controllers/mustBeAuthenticated');
 
 const app = new Koa();
+app.use(cors());
 const router = new Router();
 
 app.use(favicon(path.join(__dirname + '/public/img/icons/favicon.ico')));
@@ -94,6 +97,20 @@ router.get('/main', mustBeAuthenticated, async (ctx, next) => {
 
 router.get('/profile', mustBeAuthenticated, async (ctx, next) => {
   await ctx.render('./pages/profile');
+});
+
+router.get('/oauth/facebook', async (ctx, next) => {
+  await passport.authenticate('facebook')(ctx, next);
+
+  console.log(ctx.response);
+
+  console.log('facebook 2');
+  next();
+});
+
+router.get('/auth/facebook/callback', async (ctx, next) => {
+  passport.authenticate('facebook', { failureRedirect: '/login' });
+  ctx.redirect('/');
 });
 
 app.use(registerRouter.routes());
