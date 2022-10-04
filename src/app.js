@@ -20,7 +20,7 @@ const app = new Koa();
 app.use(cors());
 const router = new Router();
 
-app.use(favicon(path.join(__dirname + '/public/img/icons/favicon.ico')));
+app.use(favicon(path.join(__dirname + '/views/public/img/icons/favicon.ico')));
 app.use(require('koa-bodyparser')());
 app.use(require('koa-static')(path.join(__dirname, './views/public')));
 
