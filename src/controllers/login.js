@@ -6,7 +6,7 @@ module.exports = async function (ctx, next) {
 
     if (!user) {
       ctx.status = 400;
-      ctx.body = { message: info };
+      ctx.body = { message: info.message };
       return;
     }
 

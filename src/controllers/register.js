@@ -12,6 +12,7 @@ module.exports = async function register(ctx, next) {
     await user.save();
   } catch (e) {
     if (e.code == 11000) {
+      console.log(e);
       ctx.status = 409;
       ctx.body = JSON.stringify(e.keyValue);
       return;

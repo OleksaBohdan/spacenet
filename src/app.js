@@ -13,6 +13,7 @@ const Session = require('./models/Session');
 const User = require('./models/User');
 const registerRouter = require('./routes/register/registerRouter');
 const loginRouter = require('./routes/login/loginRouter');
+const mainRouter = require('./routes/main/mainRouter');
 const mustBeAuthenticated = require('./controllers/mustBeAuthenticated');
 const { facebook, facebookCallback } = require('./controllers/loginFacebook');
 
@@ -93,6 +94,7 @@ router.get('/register', async (ctx, next) => {
 });
 
 router.get('/main', mustBeAuthenticated, async (ctx, next) => {
+  ctx.state = { userName: ctx.user.userName, age: ctx.user.age, about: ctx.user.about };
   await ctx.render('./pages/main');
 });
 
@@ -110,6 +112,7 @@ router.get('/logout', async (ctx, next) => {
 
 app.use(registerRouter.routes());
 app.use(loginRouter.routes());
+app.use(mainRouter.routes());
 app.use(router.routes());
 
 module.exports = app;
