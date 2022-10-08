@@ -36,7 +36,7 @@ app.use(async (ctx, next) => {
     } else {
       console.error(err);
       ctx.status = 500;
-      ctx.body = { error: 'Internal server error' };
+      ctx.body = { error: err.message };
     }
   }
 });
@@ -116,5 +116,6 @@ app.use(loginRouter.routes());
 app.use(mainRouter.routes());
 app.use(downloadRouter.routes());
 app.use(router.routes());
+app.use(router.allowedMethods());
 
 module.exports = app;
