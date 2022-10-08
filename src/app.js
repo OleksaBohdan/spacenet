@@ -95,7 +95,17 @@ router.get('/register', async (ctx, next) => {
 });
 
 router.get('/main', mustBeAuthenticated, async (ctx, next) => {
-  ctx.state = { userName: ctx.user.userName, age: ctx.user.age, about: ctx.user.about };
+  let avatarPath = ctx.user.avatar;
+  console.log('avatar', avatarPath);
+  if (!avatarPath) {
+    avatarPath = '../data/nullavatar.jpg';
+  }
+  ctx.state = {
+    userName: ctx.user.userName,
+    age: ctx.user.age,
+    about: ctx.user.about,
+    avatar: avatarPath,
+  };
   await ctx.render('./pages/main');
 });
 

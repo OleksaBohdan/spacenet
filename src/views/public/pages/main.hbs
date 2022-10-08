@@ -28,12 +28,13 @@
     <section class='main-blocks'>
       <div class='main-blocks__block'>
         <div class='main-blocks__header'>My account</div>
-        <form action='/download' method='post' enctype='multipart/form-data'>
-          <label>Файл</label><br />
-          <input type='file' name='avatar' /><br /><br />
-          <input type='submit' value='Send' />
+
+        <form class='main-blocks__downlaod' action='/download' method='post' enctype='multipart/form-data'>
+          <input type='file' name='avatar' value='qqq' /><br /><br />
+          <input type='submit' value='send' />
         </form>
-        <div class='main-blocks__photo'><img src='../img/user_photo.png' alt='user' /></div>
+
+        <div class='main-blocks__photo'><img src='{{avatar}}' alt='user' /></div>
         <div class='main-blocks__username'>{{userName}}</div>
         <form class='credential-form' action='#'>
           <label class='setting-lbl' for='name'>name</label>

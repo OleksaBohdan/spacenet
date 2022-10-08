@@ -15,6 +15,7 @@ const userSchema = new mongoose.Schema(
       unique: true,
     },
     age: { type: String },
+    avatar: { type: String },
     about: { type: String },
     facebookId: { type: String },
     passwordHash: {
