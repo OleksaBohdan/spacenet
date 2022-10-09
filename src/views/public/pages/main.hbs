@@ -29,9 +29,12 @@
       <div class='main-blocks__block'>
         <div class='main-blocks__header'>My account</div>
 
-        <form class='main-blocks__downlaod' action='/download' method='post' enctype='multipart/form-data'>
-          <input type='file' name='avatar' value='qqq' /><br /><br />
-          <input type='submit' value='send' />
+        <form class='main-blocks__download-form' action='/download' method='post' enctype='multipart/form-data'>
+          <label class='main-blocks__download-label' for='download-input'>
+            <img src='../img/icons/plus-circle.svg' alt='plus' /></label>
+          <input class='main-blocks__download-input' id='download-input' type='file' name='avatar' value='qqq' /><br
+          /><br />
+          <input class='main-blocks__download-submit' type='submit' value='save' />
         </form>
 
         <div class='main-blocks__photo'><img src='{{avatar}}' alt='user' /></div>
