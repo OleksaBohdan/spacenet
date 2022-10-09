@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   const credentialForm = document.querySelector('.credential-form');
   const profileBtn = document.querySelector('.btn_submit_profile');
+  const usersBtn = document.querySelector('.btn_submit_users');
 
   profileBtn.addEventListener('click', async (e) => {
     e.preventDefault();
@@ -25,6 +26,15 @@ document.addEventListener('DOMContentLoaded', () => {
         location.reload();
       }
       response.status;
+    });
+  });
+
+  usersBtn.addEventListener('click', async (e) => {
+    e.preventDefault;
+    await fetch('/api/getUsers', {
+      method: 'get',
+    }).then((response) => {
+      console.log(response.body.json());
     });
   });
 });
