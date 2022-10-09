@@ -8,7 +8,8 @@ const downloadRouter = new Router();
 const upload = multer({ dest: './src/views/public/data/avatars', limits: { fileSize: 10000000 } });
 
 downloadRouter.post('/download', upload.single('avatar'), async (ctx, next) => {
-  const fileName = ctx.file.originalname;
+  const fileName = ctx.file.filename + '.jpg';
+
   fs.renameSync(
     path.join(__dirname, '../views/public/data/avatars', ctx.file.filename),
     path.join(__dirname, '../views/public/data/avatars', fileName)
