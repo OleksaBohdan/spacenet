@@ -13,9 +13,10 @@ downloadRouter.post('/download', upload.single('avatar'), async (ctx, next) => {
     path.join(__dirname, '../views/public/data/avatars', ctx.file.filename),
     path.join(__dirname, '../views/public/data/avatars', fileName)
   );
-  await User.findOneAndUpdate(ctx.user, { avatar: `../data/avatars/${fileName}` });
-  console.log('ctx.file', ctx.file);
-  console.log('ctx.request.body', ctx.request.body);
+
+  const user = await User.findById(ctx.user.id);
+  user.avatar = `../data/avatars/${fileName}`;
+  await user.save();
 
   ctx.redirect('/main');
 });

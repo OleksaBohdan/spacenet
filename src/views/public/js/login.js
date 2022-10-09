@@ -31,7 +31,6 @@ document.addEventListener('DOMContentLoaded', () => {
       body: JSON.stringify(user),
     }).then((res) => {
       res.json().then((result) => {
-        console.log(result);
         if (res.status == 500 || res.status == 404 || res.status == 412 || res.status == 400) {
           info.innerHTML = result.message;
         }
@@ -42,8 +41,6 @@ document.addEventListener('DOMContentLoaded', () => {
         info.innerHTML = `Login succesfull`;
         window.location.replace('/main');
       }
-
-      console.log('res stat', res.status);
     });
   });
 });

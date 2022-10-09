@@ -1,14 +1,12 @@
 const User = require('../models/User');
 
 module.exports = async function updateProfile(ctx, next) {
-  const user = {
-    userName: ctx.request.body.name,
-    age: ctx.request.body.age,
-    about: ctx.request.body.about,
-  };
-
   try {
-    await User.findOneAndUpdate(ctx.user, user);
+    const user = await User.findById(ctx.user.id);
+    user.userName = ctx.request.body.name;
+    user.age = ctx.request.body.age;
+    user.about = ctx.request.body.about;
+    await user.save();
     ctx.status = 200;
   } catch (e) {
     ctx.body = { message: e.message };

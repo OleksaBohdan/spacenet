@@ -96,7 +96,6 @@ router.get('/register', async (ctx, next) => {
 
 router.get('/main', mustBeAuthenticated, async (ctx, next) => {
   let avatarPath = ctx.user.avatar;
-  console.log('avatar', avatarPath);
   if (!avatarPath) {
     avatarPath = '../data/nullavatar.jpg';
   }
@@ -118,6 +117,7 @@ router.get('/oauth/facebook/callback', facebookCallback);
 
 router.get('/logout', async (ctx, next) => {
   await Session.findOneAndDelete(ctx.cookies.get('token'));
+  ctx.cookies.set('token', '');
   ctx.redirect('/login');
 });
 

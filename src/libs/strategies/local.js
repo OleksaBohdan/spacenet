@@ -9,7 +9,7 @@ module.exports = new LocalStrategy(
     try {
       const user = await User.findOne({ userName: username });
       if (!user) {
-        return done(null, false, 'User not found');
+        return done(null, false, { message: 'User not found' });
       }
       const isValidPassword = await user.checkPassword(password);
       if (!isValidPassword) {
