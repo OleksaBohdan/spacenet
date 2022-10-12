@@ -8,6 +8,8 @@ module.exports = async function (ctx, next) {
     userArray.push({ avatar: obj.avatar, userName: obj.userName, createdAt: obj.createdAt });
   });
 
+  console.log(userArray);
+
   ctx.body = JSON.stringify(userArray);
   ctx.status = 200;
 };
