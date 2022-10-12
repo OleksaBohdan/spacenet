@@ -108,7 +108,9 @@ router.get('/main', mustBeAuthenticated, async (ctx, next) => {
   await ctx.render('./pages/main');
 });
 
-router.get('/profile', mustBeAuthenticated, async (ctx, next) => {
+router.get('/profile/:id', mustBeAuthenticated, async (ctx, next) => {
+  const userId = ctx.params.id;
+  console.log(userId);
   await ctx.render('./pages/profile');
 });
 
