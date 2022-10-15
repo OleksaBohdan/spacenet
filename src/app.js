@@ -104,6 +104,7 @@ router.get('/main', mustBeAuthenticated, async (ctx, next) => {
     userName: ctx.user.userName,
     age: ctx.user.age,
     about: ctx.user.about,
+    id: ctx.user.profileId,
     avatar: avatarPath,
   };
   await ctx.render('./pages/main');
