@@ -8,6 +8,9 @@ const downloadRouter = new Router();
 const upload = multer({ dest: './src/views/public/data/avatars', limits: { fileSize: 10000000 } });
 
 downloadRouter.post('/download', upload.single('avatar'), async (ctx, next) => {
+  console.log('im here');
+  console.log('headers', ctx.headers);
+  console.log('body', ctx.request.body);
   const fileName = ctx.file.filename + '.jpg';
 
   fs.renameSync(
@@ -19,7 +22,7 @@ downloadRouter.post('/download', upload.single('avatar'), async (ctx, next) => {
   user.avatar = `../data/avatars/${fileName}`;
   await user.save();
 
-  ctx.redirect('/main');
+  ctx.status = 200;
 });
 
 module.exports = downloadRouter;

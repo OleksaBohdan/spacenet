@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const profileBtn = document.querySelector('.btn_submit_profile');
   const userlist = document.querySelector('.main-blocks__userlist');
   const usersBtn = document.querySelector('.btn_submit_users');
+  const avatarForm = document.querySelector('.main-blocks__download-form');
 
   profileBtn.addEventListener('click', async (e) => {
     e.preventDefault();
@@ -23,8 +24,6 @@ document.addEventListener('DOMContentLoaded', () => {
       age: credentialForm.age.value,
       about: credentialForm.about.value,
     };
-
-    console.log(credentials);
 
     await fetch('/api/update', {
       method: 'post',
@@ -46,7 +45,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     await fetch('/api/getUsers', {
       method: 'get',
-      'Content-Type': 'application/json',
+      headers: {
+        'Content-Type': 'application/json',
+      },
     })
       .then((response) => {
         return response.json();
@@ -60,5 +61,26 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         userlist.innerHTML = result;
       });
+  });
+
+  avatarForm.addEventListener('change', async (e) => {
+    e.preventDefault();
+
+    const file = document.querySelector('#download-input');
+    const formData = new FormData();
+
+    console.log(file.files[0]);
+
+    formData.append('avatar', file.files[0], 'avatar');
+    console.log(formData);
+
+    await fetch('/download', {
+      method: 'post',
+      body: formData,
+    }).then((respone) => {
+      if (respone.status == 200) {
+        location.reload();
+      }
+    });
   });
 });
