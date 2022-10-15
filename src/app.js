@@ -14,6 +14,7 @@ const User = require('./models/User');
 const registerRouter = require('./routes/register/registerRouter');
 const loginRouter = require('./routes/login/loginRouter');
 const mainRouter = require('./routes/main/mainRouter');
+const profileRouter = require('./routes/profile/profileRouter');
 const downloadRouter = require('./controllers/downloader');
 const mustBeAuthenticated = require('./controllers/mustBeAuthenticated');
 const { facebook, facebookCallback } = require('./controllers/loginFacebook');
@@ -127,6 +128,7 @@ app.use(registerRouter.routes());
 app.use(loginRouter.routes());
 app.use(mainRouter.routes());
 app.use(downloadRouter.routes());
+app.use(profileRouter.routes());
 app.use(router.routes());
 app.use(router.allowedMethods());
 

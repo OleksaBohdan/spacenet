@@ -65,14 +65,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   avatarForm.addEventListener('change', async (e) => {
     e.preventDefault();
-
     const file = document.querySelector('#download-input');
     const formData = new FormData();
-
-    console.log(file.files[0]);
-
     formData.append('avatar', file.files[0], 'avatar');
-    console.log(formData);
 
     await fetch('/download', {
       method: 'post',

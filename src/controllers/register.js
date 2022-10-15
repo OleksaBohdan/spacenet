@@ -2,9 +2,14 @@ const User = require('../models/User');
 const Router = require('koa-router');
 
 module.exports = async function register(ctx, next) {
+  const id = (await User.collection.find().count()) + 1;
+
+  console.log('id', id);
+
   const user = new User({
     userName: ctx.request.body.userName,
     email: ctx.request.body.email,
+    id: id,
   });
 
   try {

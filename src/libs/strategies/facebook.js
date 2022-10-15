@@ -20,9 +20,11 @@ module.exports = new FacebookStrategy(
     try {
       const user = await User.findOne({ facebookId: id });
       if (!user) {
+        const id = (await User.collection.find().count()) + 1;
         const user = await User.create({
           email: profile.id,
           userName: profile.displayName,
+          profileId: id,
           facebookId: profile.id,
         });
         return done(null, user, 'ok');
