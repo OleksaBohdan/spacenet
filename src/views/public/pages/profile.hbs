@@ -1,69 +1,68 @@
-<!DOCTYPE html>
-<html lang="en">
+<html lang='en'>
   <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset='UTF-8' />
+    <meta http-equiv='X-UA-Compatible' content='IE=edge' />
+    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
     <title>Spacenet - Username</title>
-    <link rel="shortcut icon" href="./img/icons/favicon.ico" type="image/x-icon" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel='shortcut icon' href='./img/icons/favicon.ico' type='image/x-icon' />
+    <link rel='preconnect' href='https://fonts.googleapis.com' />
+    <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Montserrat:wght@300;400;600&display=swap"
-      rel="stylesheet"
+      href='https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Montserrat:wght@300;400;600&display=swap'
+      rel='stylesheet'
     />
-    <link rel="stylesheet" href="../css/bootstrap-reboot.min.css" />
-    <link rel="stylesheet" href="../css/index.min.css" />
+    <link rel='stylesheet' href='../css/bootstrap-reboot.min.css' />
+    <link rel='stylesheet' href='../css/index.min.css' />
   </head>
   <body>
-    <header class="header">
-      <div class="header__logo">
-        <a href="/"><img src="../img/logo.svg" alt="spacenet_logo" /></a>
+    <header class='header'>
+      <div class='header__logo'>
+        <a href='/'><img src='../img/logo.svg' alt='spacenet_logo' /></a>
       </div>
     </header>
 
-    <section class="main-profile">
-      <div class="main-profile__cover">
-        <img src="../img/cover_image.png" alt="cover" />
+    <section class='main-profile'>
+      <div class='main-profile__cover'>
+        <img src='../img/cover_image.png' alt='cover' />
       </div>
-      <div class="main-profile__photo"><img src="../img/user_photo.png" alt="userphoto" /></div>
-      <div class="main-profile__name">t1hebestdick</div>
-      <div class="main-profile__scores">
-        <div class="main-profile__scores-score">
-          <img src="../img/icons/like.svg" alt="like" />
+      <div class='main-profile__photo'><img src='{{avatar}}' alt='userphoto' /></div>
+      <div class='main-profile__name'>{{userName}}</div>
+      <div class='main-profile__scores'>
+        <div class='main-profile__scores-score'>
+          <img src='../img/icons/like.svg' alt='like' />
           <span>10</span>
         </div>
-        <div class="main-profile__scores-score">
-          <img src="../img/icons/score.svg" alt="score" />
+        <div class='main-profile__scores-score'>
+          <img src='../img/icons/score.svg' alt='score' />
           <span>8</span>
         </div>
-        <div class="main-profile__scores-score">
-          <img src="../img/icons/dislike.svg" alt="dislike" />
+        <div class='main-profile__scores-score'>
+          <img src='../img/icons/dislike.svg' alt='dislike' />
           <span>-2</span>
         </div>
       </div>
-      <div class="main-profile__wrapper">
-        <div class="main-profile__wrapper-inner">
-          <div class="main-profile__fullname main-profile__smallblock">
-            <span class="main-profile__label">full name</span>
-            Bohdan Oleksa
+      <div class='main-profile__wrapper'>
+        <div class='main-profile__wrapper-inner'>
+          <div class='main-profile__fullname main-profile__smallblock'>
+            <span class='main-profile__label'>full name</span>
+            {{userName}}
           </div>
-          <div class="main-profile__age main-profile__smallblock">
-            <span class="main-profile__label">age</span>
-            25
+          <div class='main-profile__age main-profile__smallblock'>
+            <span class='main-profile__label'>age</span>
+            {{age}}
           </div>
         </div>
 
-        <div class="main-profile__descr">
-          <span class="main-profile__label">about</span>
+        <div class='main-profile__descr'>
+          <span class='main-profile__label'>about</span>
           <br />
-          Cats lover & Node.js developer
+          {{about}}
         </div>
       </div>
     </section>
 
-    <footer class="footer">
-      <div class="copyright">2022 Planet Earth</div>
+    <footer class='footer'>
+      <div class='copyright'>2022 Planet Earth</div>
     </footer>
   </body>
 </html>

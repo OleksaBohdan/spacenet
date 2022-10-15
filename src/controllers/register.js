@@ -9,7 +9,7 @@ module.exports = async function register(ctx, next) {
   const user = new User({
     userName: ctx.request.body.userName,
     email: ctx.request.body.email,
-    id: id,
+    profileId: id,
   });
 
   try {

@@ -110,8 +110,27 @@ router.get('/main', mustBeAuthenticated, async (ctx, next) => {
 });
 
 router.get('/profile/:id', mustBeAuthenticated, async (ctx, next) => {
-  const userId = ctx.params.id;
-  console.log(userId);
+  const profileId = ctx.params.id;
+
+  const user = await User.findOne({ profileId: profileId });
+
+  if (!user) {
+    ctx.status = 404;
+    ctx.redirect('/main');
+  }
+
+  let avatarPath = user.avatar;
+  if (!avatarPath) {
+    avatarPath = '../data/nullavatar.jpg';
+  }
+
+  ctx.state = {
+    userName: user.userName,
+    age: user.age,
+    about: user.about,
+    avatar: avatarPath,
+  };
+
   await ctx.render('./pages/profile');
 });
 
