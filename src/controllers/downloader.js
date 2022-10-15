@@ -8,9 +8,6 @@ const downloadRouter = new Router();
 const upload = multer({ dest: './src/views/public/data/avatars', limits: { fileSize: 10000000 } });
 
 downloadRouter.post('/download', upload.single('avatar'), async (ctx, next) => {
-  console.log('im here');
-  console.log('headers', ctx.headers);
-  console.log('body', ctx.request.body);
   const fileName = ctx.file.filename + '.jpg';
 
   fs.renameSync(
@@ -19,6 +16,16 @@ downloadRouter.post('/download', upload.single('avatar'), async (ctx, next) => {
   );
 
   const user = await User.findById(ctx.user.id);
+
+  if (user.avatar) {
+    const oldUserAvatar = user.avatar.substring(2);
+    fs.unlink(path.join(__dirname, '../views/public', oldUserAvatar), (err) => {
+      if (err) {
+        console.log(err);
+      }
+    });
+  }
+
   user.avatar = `../data/avatars/${fileName}`;
   await user.save();
 
