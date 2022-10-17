@@ -1,8 +1,8 @@
-function userComponent(path, userName, date) {
+function userComponent(path, userName, date, id) {
   const userHtml = `
 <div class='main-blocks__user'>
 <img class='main-blocks__avatar' src='${path}' alt='photo' />
-<div class='main-blocks__name'>${userName}</div>
+<div class='main-blocks__name'> <a href='/profile/${id}'>${userName}</a>  </div>
 <div class='main-blocks__userdate'>${date}</div>
 </div>
 `;
@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         res.forEach((obj) => {
           const date = obj.createdAt.substr(0, 10);
-          result += userComponent(obj.avatar, obj.userName, date);
+          result += userComponent(obj.avatar, obj.userName, date, obj.profileId);
         });
         userlist.innerHTML = result;
       });

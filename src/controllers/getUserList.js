@@ -5,10 +5,8 @@ module.exports = async function (ctx, next) {
   const userArray = [];
 
   users.forEach((obj) => {
-    userArray.push({ avatar: obj.avatar, userName: obj.userName, createdAt: obj.createdAt });
+    userArray.push({ avatar: obj.avatar, userName: obj.userName, createdAt: obj.createdAt, profileId: obj.profileId });
   });
-
-  console.log(userArray);
 
   ctx.body = JSON.stringify(userArray);
   ctx.status = 200;

@@ -14,7 +14,6 @@ const userSchema = new mongoose.Schema(
       required: true,
       unique: true,
     },
-    userId: { type: String },
     age: { type: String },
     avatar: { type: String },
     about: { type: String },
