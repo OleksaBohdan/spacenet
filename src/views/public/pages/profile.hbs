@@ -28,7 +28,7 @@
       <div class='main-profile__photo'><img src='{{avatar}}' alt='userphoto' /></div>
       <div class='main-profile__name'>{{userName}}</div>
       <div class='main-profile__scores'>
-        <div class='main-profile__scores-score'>
+        <div class='main-profile__scores-score main-profile__scores-score-positive'>
           <img src='../img/icons/like.svg' alt='like' />
           <span>10</span>
         </div>
@@ -36,7 +36,7 @@
           <img src='../img/icons/score.svg' alt='score' />
           <span>8</span>
         </div>
-        <div class='main-profile__scores-score'>
+        <div class='main-profile__scores-score main-profile__scores-score-negative'>
           <img src='../img/icons/dislike.svg' alt='dislike' />
           <span>-2</span>
         </div>
@@ -64,5 +64,7 @@
     <footer class='footer'>
       <div class='copyright'>2022 Planet Earth</div>
     </footer>
+
+    <script src='../js/profile.js'> </script>
   </body>
 </html>
