@@ -44,11 +44,11 @@
           </form></div>
         <div class='main-blocks__username'><a href='/profile/{{id}}'>{{userName}}</a></div>
         <form class='credential-form' action='#'>
-          <label class='setting-lbl' for='name'>name</label>
+          <label class='setting-lbl' for='name'>name <span class='credential-form-name'></span></label>
           <input name='username' class='setting' id='name' type='text' value='{{userName}}' />
-          <label class='setting-lbl' for='age'>age</label>
+          <label class='setting-lbl' for='age'>age <span class='credential-form-age'></span></label>
           <input name='age' class='setting' id='age' type='text' value='{{age}}' />
-          <label class='setting-lbl' for='about'>about</label>
+          <label class='setting-lbl' for='about'>about <span class='credential-form-about'></span></label>
           <input name='about' class='setting' id='about' type='text' value='{{about}}' />
           <button class='btn btn_submit btn_submit_profile'>save changes</button>
         </form>

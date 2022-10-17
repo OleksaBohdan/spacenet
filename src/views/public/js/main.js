@@ -15,6 +15,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const userlist = document.querySelector('.main-blocks__userlist');
   const usersBtn = document.querySelector('.btn_submit_users');
   const avatarForm = document.querySelector('.main-blocks__download-form');
+  const infoName = document.querySelector('.credential-form-name');
+  const infoAge = document.querySelector('.credential-form-age');
+  const infoAbout = document.querySelector('.credential-form-about');
 
   profileBtn.addEventListener('click', async (e) => {
     e.preventDefault();
@@ -24,6 +27,19 @@ document.addEventListener('DOMContentLoaded', () => {
       age: credentialForm.age.value,
       about: credentialForm.about.value,
     };
+
+    if (credentials.name.length > 25) {
+      infoName.innerHTML = 'Error: max 25 symbols';
+      return;
+    }
+    if (credentials.age.length > 25) {
+      infoAge.innerHTML = 'Error: max 25 symbols';
+      return;
+    }
+    if (credentials.about.length > 25) {
+      infoAbout.innerHTML = 'Error: max 25 symbols';
+      return;
+    }
 
     await fetch('/api/update', {
       method: 'post',
