@@ -10,11 +10,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
     await fetch('/api/positive', {
       method: 'post',
-      body: name,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ userName: name }),
     });
   });
 
   negativeBtn.addEventListener('click', async (e) => {
-    console.log('negative');
+    const name = userName.innerHTML;
+    console.log('negative', name);
+    userName.outerHTML;
+
+    await fetch('/api/negative', {
+      method: 'post',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ userName: name }),
+    });
   });
 });

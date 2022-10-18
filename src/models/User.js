@@ -19,9 +19,8 @@ const userSchema = new mongoose.Schema(
     about: { type: String },
     profileId: { type: String },
     facebookId: { type: String },
-    positiveReview: { type: String },
-    negativeReview: { type: String },
-    listRecallers: { type: String },
+    positiveReview: [],
+    negativeReview: [],
     passwordHash: {
       type: String,
     },
