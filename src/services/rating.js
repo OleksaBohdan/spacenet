@@ -1,7 +1,6 @@
 const User = require('../models/User');
 
 const positive = async function (ctx, next) {
-  console.log('positive function');
   const reviewerId = ctx.user.profileId;
   const userName = ctx.request.body.userName;
 
@@ -13,7 +12,6 @@ const positive = async function (ctx, next) {
   }
 
   if (user.negativeReview.includes(reviewerId)) {
-    console.log('Deleted id from negative');
     const index = user.negativeReview.indexOf(reviewerId);
     if (index !== -1) {
       user.negativeReview.splice(index, 1);
@@ -21,9 +19,16 @@ const positive = async function (ctx, next) {
   }
 
   if (user.positiveReview.includes(reviewerId)) {
-    console.log('Your already left positive rewiev for this user');
+    const index = user.positiveReview.indexOf(reviewerId);
+
+    if (index !== -1) {
+      user.positiveReview.splice(index, 1);
+    }
+
+    await user.save();
+
     ctx.status = 200;
-    ctx.body = { message: 'Your already left positive rewiev for this user' };
+    ctx.body = { positive: user.positiveReview.length, negative: user.negativeReview.length };
     return;
   }
 
@@ -31,12 +36,11 @@ const positive = async function (ctx, next) {
 
   await user.save();
 
-  console.log('user', user);
   ctx.status = 200;
+  ctx.body = { positive: user.positiveReview.length, negative: user.negativeReview.length };
 };
 
 const negative = async function (ctx, next) {
-  console.log('negative function');
   const reviewerId = ctx.user.profileId;
   const userName = ctx.request.body.userName;
 
@@ -48,7 +52,6 @@ const negative = async function (ctx, next) {
   }
 
   if (user.positiveReview.includes(reviewerId)) {
-    console.log('Deleted id from positive');
     const index = user.positiveReview.indexOf(reviewerId);
     if (index !== -1) {
       user.positiveReview.splice(index, 1);
@@ -56,9 +59,16 @@ const negative = async function (ctx, next) {
   }
 
   if (user.negativeReview.includes(reviewerId)) {
-    console.log('Your already left negative rewiev for this user');
+    const index = user.negativeReview.indexOf(reviewerId);
+
+    if (index !== -1) {
+      user.negativeReview.splice(index, 1);
+    }
+
+    await user.save();
+
     ctx.status = 200;
-    ctx.body = { message: 'Your already left negative rewiev for this user' };
+    ctx.body = { positive: user.positiveReview.length, negative: user.negativeReview.length };
     return;
   }
 
@@ -66,8 +76,16 @@ const negative = async function (ctx, next) {
 
   await user.save();
 
-  console.log('user', user);
   ctx.status = 200;
+  ctx.body = { positive: user.positiveReview.length, negative: user.negativeReview.length };
 };
 
-module.exports = { positive, negative };
+const getScores = async function (ctx, next) {
+  const userName = ctx.request.body.userName;
+
+  const user = await User.findOne({ userName: userName });
+  ctx.status = 200;
+  ctx.body = { positive: user.positiveReview.length, negative: user.negativeReview.length };
+};
+
+module.exports = { positive, negative, getScores };
