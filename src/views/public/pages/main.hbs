@@ -28,21 +28,17 @@
     <section class='main-blocks'>
       <div class='main-blocks__block'>
         <div class='main-blocks__header'>My account</div>
+        <div class='main-blocks__photo'>
+          <div class='main-blocks__photo-img'>
+            <img class='main-blocks__img' data-avatar='{{avatar}}' src='{{avatar}}' alt='user' />
+          </div>
 
-        {{! <form class='main-blocks__download-form' action='/download' method='post' enctype='multipart/form-data'>
-          <label class='main-blocks__download-label' for='download-input'>
-            <img src='../img/icons/plus-circle.svg' alt='plus' /></label>
-          <input class='main-blocks__download-input' id='download-input' type='file' name='avatar' />
-          <input class='main-blocks__download-submit' type='submit' value='save' />
-        </form> }}
-
-        <div class='main-blocks__photo'><img src='{{avatar}}' alt='user' />
           <form class='main-blocks__download-form'>
             <label class='main-blocks__download-label' for='download-input'>
               <img src='../img/icons/plus-circle.svg' alt='plus' /></label>
             <input class='main-blocks__download-input' id='download-input' type='file' />
           </form></div>
-        <div class='main-blocks__username'><a href='/profile/{{id}}'>{{userName}}</a></div>
+        <div class='main-blocks__username' data-id='{{id}}'><a href='/profile/{{id}}'>{{userName}}</a></div>
         <form class='credential-form' action='#'>
           <label class='setting-lbl' for='name'>name <span class='credential-form-name'></span></label>
           <input name='username' class='setting credential-userName' id='name' type='text' value='{{userName}}' />
@@ -57,13 +53,6 @@
       <div class='main-blocks__block'>
         <div class='main-blocks__header'>Users</div>
         <div class='main-blocks__userlist'>
-
-          {{! <div class='main-blocks__user'>
-            <img class='main-blocks__avatar' src='../img/user_1.jpeg' alt='photo' />
-            <div class='main-blocks__name'>p.boy</div>
-            <div class='main-blocks__userdate'>18.08.2022</div>
-          </div> }}
-
         </div>
         <button class='btn btn_submit btn_submit_users'>Get userlist</button>
       </div>
@@ -71,27 +60,6 @@
       <div class='main-blocks__block'>
         <div class='main-blocks__header'>Live Chat</div>
         <div class='main-blocks__chatlist'>
-
-          <div class='main-blocks__msg main-blocks__msg-other'>
-            <img class='main-blocks__avatar' src='../img/user_1.jpeg' alt='photo' />
-            <div class='main-blocks__msg-wrapper'>
-              <div class='main-blocks__msg-username'>pussy.boy</div>
-              <div class='main-blocks__msg-text'>Hello everybody!</div>
-            </div>
-          </div>
-
-          <div class='main-blocks__msg main-blocks__msg-me'>
-            <div class='main-blocks__msg-wrapper'>
-              <div class='main-blocks__msg-username'>Bohdan</div>
-              <div class='main-blocks__msg-text'>
-                Hello everybody! Hello everybody!Hello everybody!Hello everybody!Hello everybody! Hello everybody! Hello
-                everybody!Hello everybody!Hello everybody!Hello everybody! Hello everybody! Hello everybody!Hello
-                everybody!Hello everybody!Hello everybody!
-              </div>
-            </div>
-            <img class='main-blocks__avatar' src='../img/user_photo.png' alt='photo' />
-          </div>
-
         </div>
         <form class='main-blocks__chatform'>
           <input class='main-blocks__chatinput' type='text' />
