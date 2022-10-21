@@ -45,7 +45,7 @@
         <div class='main-blocks__username'><a href='/profile/{{id}}'>{{userName}}</a></div>
         <form class='credential-form' action='#'>
           <label class='setting-lbl' for='name'>name <span class='credential-form-name'></span></label>
-          <input name='username' class='setting' id='name' type='text' value='{{userName}}' />
+          <input name='username' class='setting credential-userName' id='name' type='text' value='{{userName}}' />
           <label class='setting-lbl' for='age'>age <span class='credential-form-age'></span></label>
           <input name='age' class='setting' id='age' type='text' value='{{age}}' />
           <label class='setting-lbl' for='about'>about <span class='credential-form-about'></span></label>
@@ -93,9 +93,9 @@
           </div>
 
         </div>
-        <form class='main-blocks__chatform' action='#'>
-          <input type='text' />
-          <button></button>
+        <form class='main-blocks__chatform'>
+          <input class='main-blocks__chatinput' type='text' />
+          <button type='submit'></button>
         </form>
       </div>
     </section>
@@ -104,6 +104,7 @@
       <div class='copyright'>2022 Planet Earth</div>
     </footer>
 
+    <script src='/socket.io/socket.io.js'></script>
     <script src='../js/main.js'></script>
     <script src='../js/chat.js'></script>
   </body>

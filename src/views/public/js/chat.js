@@ -1,25 +1,25 @@
-const msgMe = function () {
+const msgMe = function (username = 'unknown', text = '') {
   return `
   <div class='main-blocks__msg main-blocks__msg-me'>
     <div class='main-blocks__msg-wrapper'>
-      <div class='main-blocks__msg-username'>Bohdan</div>
+      <div class='main-blocks__msg-username'>${username}</div>
       <div class='main-blocks__msg-text'>
-        Hello everybody! Hello everybody!Hello everybody!Hello everybody!Hello everybody! Hello everybody! Hello
-        everybody!Hello everybody!Hello everybody!Hello everybody! Hello everybody! Hello everybody!Hello
-        everybody!Hello everybody!Hello everybody!
+      ${text}
       </div>
     </div>
-    <img class='main-blocks__avatar' src='../img/user_photo.png' alt='photo' />
+    <img class='main-blocks__avatar' src='../data/nullavatar.jpg' alt='photo' />
   </div>
   `;
 };
-const msgOther = function () {
+const msgOther = function (username = 'unknown', text = '') {
   return `
   <div class='main-blocks__msg main-blocks__msg-other'>
     <img class='main-blocks__avatar' src='../img/user_1.jpeg' alt='photo' />
     <div class='main-blocks__msg-wrapper'>
-      <div class='main-blocks__msg-username'>pussy.boy</div>
-      <div class='main-blocks__msg-text'>Hello everybody!</div>
+      <div class='main-blocks__msg-username'>${username}</div>
+      <div class='main-blocks__msg-text'>
+      ${text}
+      </div>
     </div>
   </div>
   `;
@@ -27,12 +27,33 @@ const msgOther = function () {
 
 document.addEventListener('DOMContentLoaded', () => {
   const chatList = document.querySelector('.main-blocks__chatlist');
+  const form = document.querySelector('.main-blocks__chatform');
+  const input = document.querySelector('.main-blocks__chatinput');
+  const userName = document.querySelector('.credential-userName');
 
-  const socket = new WebSocket('wss://localhost:3000');
+  const socket = io();
 
-  socket.onopen = function (e) {
-    console.log('connection seuccesfull');
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
 
-    socket.send('This is the client');
-  };
+    if (input.value) {
+      console.log(userName.value);
+      socket.emit('chat_message', { message: input.value, userName: userName.value });
+      input.value = '';
+    }
+  });
+
+  socket.on('chat_message', (data) => {
+    const item = document.createElement('div');
+    console.log(data);
+
+    if (data.userName == userName.value) {
+      item.innerHTML = msgMe(data.userName, data.message);
+    } else {
+      item.innerHTML = msgOther(data.userName, data.message);
+    }
+
+    chatList.appendChild(item);
+    chatList.scrollTo(0, document.body.scrollHeight);
+  });
 });
