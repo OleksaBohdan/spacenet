@@ -87,6 +87,11 @@ router.get('/', async (ctx, next) => {
   ctx.redirect('/main');
 });
 
+router.get('/test', async (ctx, next) => {
+  await Session.create();
+  ctx.body = 'test2';
+});
+
 router.get('/login', async (ctx, next) => {
   await ctx.render('./login');
 });

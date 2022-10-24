@@ -16,6 +16,4 @@ module.exports = async function (ctx, next) {
   ctx.body = {
     messages: messages.map(mapMessage),
   };
-
-  console.log(messages);
 };
