@@ -1,7 +1,8 @@
 const Message = require('../models/Message');
 
 module.exports = async function (ctx, next) {
-  const messages = await Message.find().sort({ date: 1 }).limit(20);
+  const messages = await Message.find().sort({ date: -1 }).limit(20);
+  messages.reverse();
 
   function mapMessage(message) {
     return {

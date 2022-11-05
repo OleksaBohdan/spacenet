@@ -48,7 +48,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
 
         chatList.appendChild(item);
-        chatList.scrollTo(0, document.body.scrollHeight);
         item.scrollIntoView();
       });
     });
