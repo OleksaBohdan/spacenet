@@ -49,10 +49,15 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         chatList.appendChild(item);
         chatList.scrollTo(0, document.body.scrollHeight);
+        item.scrollIntoView();
       });
     });
 
   const socket = io();
+
+  const audio = new Audio();
+  audio.preload = 'auto';
+  audio.src = '../sounds/sms.mp3';
 
   form.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -74,9 +79,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (data.userName == userName.value) {
       item.innerHTML = msgMe(data.userName, data.message, data.avatar, data.userId);
     } else {
+      audio.play();
       item.innerHTML = msgOther(data.userName, data.message, data.avatar, data.userId);
     }
-
     chatList.appendChild(item);
     item.scrollIntoView();
   });
